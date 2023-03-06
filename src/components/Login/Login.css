@@ -1,0 +1,131 @@
+.login {
+    padding-top: 38px;
+    display: flex;
+}
+
+.login__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.login__logo {
+    margin-bottom: 50px;
+}
+
+.login__title {
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    margin: 0 0 80px;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.login__label {
+    font-size: 10px;
+    line-height: 12px;
+    color: #A0A0A0;
+}
+
+.login__input {
+    font-size: 14px;
+    line-height: 17px;
+    box-sizing: border-box;
+    border: none;
+    width: 260px;
+    height: 28px;
+    border-bottom: 1px solid #E8E8E8;
+    padding: 0;
+    background-color: transparent;
+}
+
+.login__input:not(:last-of-type) {
+    margin-bottom: 24px;
+}
+
+.login__input:last-of-type {
+    margin-bottom: 309px;
+}
+
+.login__input:focus {
+    outline: none;
+}
+
+.login__button {
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 3px;
+    border: none;
+    width: 260px;
+    height: 45px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+}
+
+.login__signup {
+    font-size: 12px;
+    line-height: 15px;
+    color: #A0A0A0;
+    margin: 0 0 12px;
+    align-self: center;
+}
+
+@media screen and (min-width: 768px) {
+    .login {
+        padding-top: 214px;
+    }
+
+    .login__container {
+        align-items: flex-start;
+    }
+
+    .login__logo {
+        margin-bottom: 40px;
+    }
+
+    .login__title {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+
+    .login__input {
+        width: 396px;
+    }
+
+    .login__input:last-of-type {
+        margin-bottom: 221px;
+    }
+
+    .login__button {
+        width: 396px;
+        font-size: 14px;
+        line-height: 17px;
+        margin-bottom: 16px;
+    }
+
+    .login__signup {
+        font-size: 14px;
+        line-height: 17px;
+        margin: 0 0 214px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .login {
+        padding-top: 52px;
+    }
+
+    .login__signup {
+        margin-bottom: 70px;
+    }
+}
