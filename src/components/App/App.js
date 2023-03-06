@@ -14,7 +14,7 @@ import NotFound from '../NotFound/NotFound';
 function App() {
   let location = useLocation();
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   return (
     <>
