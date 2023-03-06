@@ -11,7 +11,7 @@ function Register() {
       <img src={logo} alt="Логотип дипломного проекта" className="register__logo" />
       <h1 className="register__title">Добро пожаловать!</h1>
       <form className="register__form">
-        <label for="name" className="register__label">
+        <label htmlFor="name" className="register__label">
           Имя
         </label>
         <div className="register__field">
@@ -23,7 +23,7 @@ function Register() {
             type="text"
           />
         </div>
-        <label for="email" className="register__label">
+        <label htmlFor="email" className="register__label">
           E-mail
         </label>
         <div className="register__field">
@@ -35,7 +35,7 @@ function Register() {
             type="email"
           />
         </div>
-        <label for="password" className="register__label">
+        <label htmlFor="password" className="register__label">
           Пароль
         </label>
         <div className="register__field">

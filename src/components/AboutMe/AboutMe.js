@@ -22,7 +22,7 @@ function AboutMe() {
                     <p className="about-me__text">
                     Я&nbsp;живу в&nbsp;Казани, работаю Full-stack разработчиком в&nbsp;СПИД.ЦЕНТРе. Я&nbsp;люблю слушать музыку, а&nbsp;ещё увлекаюсь написанием музыки. Участвовал в&nbsp;нескольких хакатонах. Мой стек: React и&nbsp;Ruby on&nbsp;Rails.
                     </p>
-                    <a href="https://github.com/egtalovikov" target="_blank" noopener noreferrer className="about-me__link links">Github</a>
+                    <a href="https://github.com/egtalovikov" target="_blank" rel="noopener noreferrer" className="about-me__link links">Github</a>
                 </div>
             </div>
         </section>

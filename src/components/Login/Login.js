@@ -11,7 +11,7 @@ function Login() {
         <img src={logo} alt="Логотип дипломного проекта" className="login__logo" />
         <h1 className="login__title">Рады видеть!</h1>
         <form className="login__form">
-          <label for="email" className="login__label">
+          <label htmlFor="email" className="login__label">
             E-mail
           </label>
           <input
@@ -21,7 +21,7 @@ function Login() {
             name="email"
             type="email"
           />
-          <label for="password" className="login__label">
+          <label htmlFor="password" className="login__label">
             Пароль
           </label>
           <input

@@ -11,10 +11,10 @@ function Footer() {
       <div className="footer__stroke"></div>
       <div className="footer__container">
         <div className="footer__links">
-          <a href="#" target="_blank" className="footer__link links" noopener noreferrer>
+          <a href="https://practicum.yandex.ru/" target="_blank" className="footer__link links" rel="noopener noreferrer">
             Яндекс.Практикум
           </a>
-          <a href="#" target="_blank" className="footer__link links" noopener noreferrer>
+          <a href="https://github.com/egtalovikov" target="_blank" className="footer__link links" rel="noopener noreferrer">
             Github
           </a>
         </div>
