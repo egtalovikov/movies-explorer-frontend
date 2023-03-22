@@ -1,52 +1,75 @@
-.search-form__container {
-    width: 100%;
-    height: 56px;
-    position: relative;
-    margin-bottom: 26px;
+.movies__search-form-container,
+.saved-movies__search-form-container {
+  width: 100%;
+  height: 56px;
+  position: relative;
+  margin-bottom: 26px;
 }
 
-.search-form__input {
-    margin: 0 auto;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
-    line-height: 16px;
-    padding: 0 100px 0 12px;
-    border: 1.5px solid #AAAAAA;
-    border-radius: 8px;
+.movies__search-form-input,
+.saved-movies__search-form-input {
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 0 100px 0 12px;
+  border: 1.5px solid #aaaaaa;
+  border-radius: 8px;
 }
 
-.search-form__button {
-    font-size: 14px;
-    line-height: 16px;
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 80px;
-    height: 44px;
-    border-radius: 5px;
-    background-color: #000000;
-    color: #FFFFFF;
-    border: none;
+.movies__search-form-button,
+.saved-movies__search-form-button {
+  font-size: 14px;
+  line-height: 16px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 80px;
+  height: 44px;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+}
+
+.movies__search-form-error,
+.saved-movies__search-form-error {
+  font-size: 12px;
+  line-height: 15px;
+  opacity: 0;
+  color: #ff0000;
+  transition: 0.3s;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.movies__search-form-error_visible,
+.saved-movies__search-form-error_visible {
+  opacity: 1;
 }
 
 @media screen and (min-width: 768px) {
-    .search-form__container {
-        height: 72px;
-    }
+  .movies__search-form-container,
+  .saved-movies__search-form-container {
+    height: 72px;
+  }
 
-    .search-form__input {
-        font-size: 18px;
-        line-height: 20px;
-        padding: 0 100px 0 25px;
-    }
+  .movies__search-form-input,
+  .saved-movies__search-form-input {
+    font-size: 18px;
+    line-height: 20px;
+    padding: 0 100px 0 25px;
+  }
 
-    .search-form__button {
-        top: 9px;
-        right: 9px;
-        width: 100px;
-        height: 52px;
-        line-height: 18px;
-    }
+  .movies__search-form-button,
+  .saved-movies__search-form-button {
+    top: 9px;
+    right: 9px;
+    width: 100px;
+    height: 52px;
+    line-height: 18px;
+  }
 }

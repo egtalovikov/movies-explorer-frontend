@@ -25,19 +25,19 @@
 .movies-card__duration {
   font-size: 11px;
   line-height: 13px;
-  color: #A0A0A0;
+  color: #a0a0a0;
   margin: 0;
 }
 
 .movies-card__button {
-    background: #F9F9F9;
-    border-radius: 36px;
-    height: 30px;
-    width: 30px;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: #f9f9f9;
+  border-radius: 36px;
+  height: 30px;
+  width: 30px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .movies-card__button_active {
@@ -45,7 +45,6 @@
 }
 
 .movies-card__photo {
-    box-sizing: border-box;
-    width: 100%;
+  box-sizing: border-box;
+  width: 100%;
 }
-

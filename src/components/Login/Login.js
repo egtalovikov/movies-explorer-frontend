@@ -1,39 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './Login.css';
+import "./Login.css";
 import logo from "../../images/logo.svg";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation";
+import validator from "validator";
 
-function Login() {
+function Login({ onLogin }) {
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormWithValidation({});
+
+  const [emailError, setEmailError] = useState("");
+
+  function validateEmail(e) {
+    var email = e.target.value;
+
+    if (validator.isEmail(email)) {
+      setEmailError("");
+    } else {
+      setEmailError("Некорректный e-mail");
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!values.email || !values.password) {
+      return;
+    }
+    onLogin(values.email, values.password, resetForm);
+  }
 
   return (
     <section className="login">
       <div className="login__container">
-        <img src={logo} alt="Логотип дипломного проекта" className="login__logo" />
+        <img
+          src={logo}
+          alt="Логотип дипломного проекта"
+          className="login__logo"
+        />
         <h1 className="login__title">Рады видеть!</h1>
-        <form className="login__form">
+        <form onSubmit={handleSubmit} className="login__form">
           <label htmlFor="email" className="login__label">
             E-mail
           </label>
-          <input
-            className="login__input"
-            required
-            id="email"
-            name="email"
-            type="email"
-          />
+          <div className="login__field">
+            <input
+              value={values.email || ""}
+              className="login__input"
+              required
+              id="email"
+              name="email"
+              type="email"
+              onChange={(e) => {
+                handleChange(e);
+                validateEmail(e);
+              }}
+            />
+            <span className="login__error">{emailError}</span>
+          </div>
           <label htmlFor="password" className="login__label">
             Пароль
           </label>
-          <input
-            className="login__input"
-            required
-            id="password"
-            name="password"
-            type="password"
-          />
+          <div className="login__field">
+            <input
+              value={values.password || ""}
+              className="login__input"
+              required
+              id="password"
+              name="password"
+              type="password"
+              onChange={handleChange}
+            />
+            <span className="login__error">{errors.password}</span>
+          </div>
           <button
+            onSubmit={handleSubmit}
             type="submit"
-            className="login__button buttons"
+            className={`login__button ${
+              isValid && validator.isEmail(values.email)
+                ? ""
+                : "login__button_inactive"
+            } buttons`}
+            disabled={isValid && validator.isEmail(values.email) ? "" : "true"}
           >
             Войти
           </button>

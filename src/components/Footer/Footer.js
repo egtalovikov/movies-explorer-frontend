@@ -1,8 +1,7 @@
 import React from "react";
-import "./Footer.css"
+import "./Footer.css";
 
 function Footer() {
-
   return (
     <footer className="footer">
       <p className="footer__about">
@@ -11,10 +10,20 @@ function Footer() {
       <div className="footer__stroke"></div>
       <div className="footer__container">
         <div className="footer__links">
-          <a href="https://practicum.yandex.ru/" target="_blank" className="footer__link links" rel="noopener noreferrer">
+          <a
+            href="https://practicum.yandex.ru/"
+            target="_blank"
+            className="footer__link links"
+            rel="noopener noreferrer"
+          >
             Яндекс.Практикум
           </a>
-          <a href="https://github.com/egtalovikov" target="_blank" className="footer__link links" rel="noopener noreferrer">
+          <a
+            href="https://github.com/egtalovikov"
+            target="_blank"
+            className="footer__link links"
+            rel="noopener noreferrer"
+          >
             Github
           </a>
         </div>

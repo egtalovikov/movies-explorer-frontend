@@ -1,55 +1,55 @@
 .movies-card-list {
-    margin: 0 0 88px;
-    display: flex;
-    flex-direction: column;
+  margin: 0 0 88px;
+  display: flex;
+  flex-direction: column;
 }
 
 .movies-card-list__container {
-    display: grid;
-    grid-template-rows: repeat(5, 236px);
-    gap: 16px;
-    justify-content: center;
-    margin-bottom: 80px;
-  }
+  display: grid;
+  grid-template-rows: 236px;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 80px;
+}
 
 .movies-card-list__more-button {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    background-color: #FFFFFF;
-    height: 36px;
-    width: 240px;
-    border: 1px solid #E8E8E8;
-    margin: 0 auto;
-    border-radius: 5px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  background-color: #ffffff;
+  height: 36px;
+  width: 240px;
+  border: 1px solid #e8e8e8;
+  margin: 0 auto;
+  border-radius: 5px;
 }
 
 @media screen and (min-width: 768px) {
-    .movies-card-list {
-        margin: 0 0 88px;
-    }
+  .movies-card-list {
+    margin: 0 0 88px;
+  }
 
-    .movies-card-list__container {
-        column-gap: 30px;
-        row-gap: 36px;
-        grid-template-rows: repeat(3, 258px);
-        grid-template-columns: repeat(2, 339px);
-      }
+  .movies-card-list__container {
+    column-gap: 30px;
+    row-gap: 36px;
+    grid-template-rows: 258px;
+    grid-template-columns: repeat(2, 339px);
+  }
 
-      .movies-card-list__more-button {
-        width: 320px;
-      }
+  .movies-card-list__more-button {
+    width: 320px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
-    .movies-card-list {
-        margin: 0 0 38px;
-    }
+  .movies-card-list {
+    margin: 0 0 38px;
+  }
 
-    .movies-card-list__container {
-        column-gap: 24px;
-        row-gap: 30px;
-        grid-template-rows: repeat(4, 271px);
-        grid-template-columns: repeat(3, 364px);
-      }
+  .movies-card-list__container {
+    column-gap: 24px;
+    row-gap: 30px;
+    grid-template-rows: 271px;
+    grid-template-columns: repeat(3, 364px);
+  }
 }
