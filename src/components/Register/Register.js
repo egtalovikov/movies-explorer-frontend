@@ -28,11 +28,13 @@ function Register({ onRegister }) {
   return (
     <section className="register">
       <div className="register__container">
-        <img
-          src={logo}
-          alt="Логотип дипломного проекта"
-          className="register__logo"
-        />
+      <Link to='/'>
+          <img
+            src={logo}
+            alt="Логотип дипломного проекта"
+            className="register__logo links"
+          />
+        </Link>
         <h1 className="register__title">Добро пожаловать!</h1>
         <form onSubmit={handleSubmit} className="register__form">
           <label htmlFor="name" className="register__label">

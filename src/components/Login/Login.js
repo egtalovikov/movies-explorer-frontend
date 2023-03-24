@@ -32,11 +32,13 @@ function Login({ onLogin }) {
   return (
     <section className="login">
       <div className="login__container">
-        <img
-          src={logo}
-          alt="Логотип дипломного проекта"
-          className="login__logo"
-        />
+        <Link to='/'>
+          <img
+            src={logo}
+            alt="Логотип дипломного проекта"
+            className="login__logo links"
+          />
+        </Link>
         <h1 className="login__title">Рады видеть!</h1>
         <form onSubmit={handleSubmit} className="login__form">
           <label htmlFor="email" className="login__label">
@@ -75,11 +77,10 @@ function Login({ onLogin }) {
           <button
             onSubmit={handleSubmit}
             type="submit"
-            className={`login__button ${
-              isValid && validator.isEmail(values.email)
+            className={`login__button ${isValid && validator.isEmail(values.email)
                 ? ""
                 : "login__button_inactive"
-            } buttons`}
+              } buttons`}
             disabled={isValid && validator.isEmail(values.email) ? "" : "true"}
           >
             Войти

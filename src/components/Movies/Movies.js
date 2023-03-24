@@ -43,11 +43,21 @@ function Movies({
         setIsLoading(true);
         moviesApi
           .getInitialCards()
-          .then((values) =>
-            localStorage.setItem("initial-movies", JSON.stringify(values))
+          .then((values) => {
+            localStorage.setItem("initial-movies", JSON.stringify(values));
+            utilityFunctions.filterCards(
+              JSON.parse(localStorage.getItem("initial-movies")),
+              checkboxState,
+              searchInput,
+              false,
+              setCards,
+              setPostLoadElement
+            );
+          }
           )
           .catch((err) => console.log(err))
           .finally(() => setIsLoading(false));
+          return;
       }
       utilityFunctions.filterCards(
         JSON.parse(localStorage.getItem("initial-movies")),

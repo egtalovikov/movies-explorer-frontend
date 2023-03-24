@@ -30,15 +30,6 @@ function MoviesCard({ card, setCards, onCardLike, onCardDelete }) {
 
   function handleLikeClick() {
     setIsLiked(true);
-    if (location.pathname !== "/saved-movies") {
-      localStorage.setItem(
-        "saved-movies",
-        JSON.stringify([
-          ...JSON.parse(localStorage.getItem("saved-movies")),
-          card,
-        ])
-      );
-    }
     onCardLike(card);
   }
 

@@ -26,7 +26,7 @@ function App() {
 
   const history = useHistory();
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("jwt"));
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,6 +41,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const [updateErrorMessage, setUpdateErrorMessage] = useState("");
+
+
+  useEffect(() => {
+    handleTokenCheck();
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {
@@ -113,10 +118,6 @@ function App() {
       });
   }
 
-  useEffect(() => {
-    handleTokenCheck();
-  }, []);
-
   function handleTokenCheck() {
     const jwt = localStorage.getItem("jwt");
 
@@ -125,7 +126,6 @@ function App() {
         if (res) {
           setName(res.name);
           setEmail(res.email);
-          setLoggedIn(true);
         }
       });
     }
@@ -163,9 +163,11 @@ function App() {
         <Switch>
           <Route path="/signup">
             <Register onRegister={handleRegister} errorMessage={errorMessage} />
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/signup" />}
           </Route>
           <Route path="/signin">
             <Login onLogin={handleLogin} />
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
           </Route>
           <ProtectedRoute
             path="/movies"

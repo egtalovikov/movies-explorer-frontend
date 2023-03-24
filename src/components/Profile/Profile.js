@@ -25,6 +25,7 @@ function Profile({
   function signOut() {
     localStorage.removeItem("initial-saved-movies");
     localStorage.removeItem("saved-movies");
+    localStorage.removeItem("initial-movies");
     localStorage.removeItem("movies");
     localStorage.removeItem("checkbox-state-movies");
     localStorage.removeItem("checkbox-state-saved-movies");
