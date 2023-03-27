@@ -25,7 +25,7 @@ function SavedMovies({
   );
 
   useEffect(() => {
-    if (checkboxState) {
+    if (checkboxState !== null) {
       utilityFunctions.filterCards(
         JSON.parse(localStorage.getItem("initial-saved-movies")),
         checkboxState,
@@ -41,8 +41,10 @@ function SavedMovies({
     setIsLoading(true);
     mainApi
       .getInitialCards()
-      .then((values) =>
+      .then((values) => {
         localStorage.setItem("initial-saved-movies", JSON.stringify(values))
+        setCards(values);
+      }
       )
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));

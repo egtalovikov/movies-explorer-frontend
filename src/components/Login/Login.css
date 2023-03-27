@@ -75,6 +75,7 @@
   line-height: 15px;
   font-weight: 500;
   transition: all 0.3s;
+  position: relative;
 }
 
 .login__button_inactive {
@@ -89,6 +90,13 @@
   position: absolute;
   top: 35px;
   left: 0;
+}
+
+.login__server-error {
+  font-size: 10px;
+  line-height: 12px;
+  color: #ff4062;
+  margin: 0 auto 10px;
 }
 
 .login__signup {

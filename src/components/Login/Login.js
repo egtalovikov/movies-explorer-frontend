@@ -5,7 +5,7 @@ import logo from "../../images/logo.svg";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import validator from "validator";
 
-function Login({ onLogin }) {
+function Login({ onLogin, loginErrorMessage }) {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation({});
 
@@ -74,6 +74,7 @@ function Login({ onLogin }) {
             />
             <span className="login__error">{errors.password}</span>
           </div>
+          <span className="login__server-error">{loginErrorMessage}</span>
           <button
             onSubmit={handleSubmit}
             type="submit"

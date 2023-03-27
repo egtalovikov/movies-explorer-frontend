@@ -76,6 +76,14 @@
   left: 0;
 }
 
+.register__server-error {
+  font-size: 10px;
+  line-height: 12px;
+  color: #ff4062;
+  margin: 0 auto 10px;
+}
+
+
 .register__button {
   background-color: #000000;
   color: #ffffff;

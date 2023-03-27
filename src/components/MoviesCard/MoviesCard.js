@@ -12,9 +12,8 @@ function MoviesCard({ card, setCards, onCardLike, onCardDelete }) {
     )
   );
 
-  const cardLikeButtonClassName = `movies-card__button ${
-    isLiked ? "movies-card__button_active" : ""
-  } buttons`;
+  const cardLikeButtonClassName = `movies-card__button ${isLiked ? "movies-card__button_active" : ""
+    } buttons`;
 
   function getTimeFromMins(mins) {
     let hours = Math.trunc(mins / 60);
@@ -51,9 +50,7 @@ function MoviesCard({ card, setCards, onCardLike, onCardDelete }) {
     <article className="movies-card">
       <div className="movies-card__top">
         <div className="movies-card__text">
-          <a className="links" href={card.trailerLink}>
-            <h2 className="movies-card__title">{card.nameRU}</h2>
-          </a>
+          <h2 className="movies-card__title">{card.nameRU}</h2>
           <p className="movies-card__duration">
             {getTimeFromMins(card.duration)}
           </p>
@@ -89,15 +86,17 @@ function MoviesCard({ card, setCards, onCardLike, onCardDelete }) {
           </button>
         )}
       </div>
-      <img
-        src={
-          card.image.url
-            ? "https://api.nomoreparties.co/" + card.image.url
-            : card.image
-        }
-        alt={card.name}
-        className="movies-card__photo"
-      />
+      <a href={card.trailerLink}>
+        <img
+          src={
+            card.image.url
+              ? "https://api.nomoreparties.co/" + card.image.url
+              : card.image
+          }
+          alt={card.name}
+          className="movies-card__photo"
+        />
+      </a>
     </article>
   );
 }

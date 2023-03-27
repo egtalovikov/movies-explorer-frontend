@@ -1,3 +1,5 @@
+import { shortsDuration } from "./constants";
+
 export function filterCards(
   cards,
   checkboxState,
@@ -10,7 +12,7 @@ export function filterCards(
     if (checkboxState) {
       return (
         item.nameRU.toLowerCase().indexOf(searchInput.toLowerCase()) !== -1 &&
-        item.duration <= 40
+        item.duration <= shortsDuration
       );
     } else {
       return (

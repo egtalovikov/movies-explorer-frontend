@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import "./MoviesCardList.css";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
+import { showMoreCardsWidth1280, showMoreCardsWidth320 } from "../../utils/constants";
 
 function MoviesCardList({
   cards,
@@ -18,10 +19,10 @@ function MoviesCardList({
 
   function handleMoreMovie() {
     if (width >= 1280) {
-      return setNext(next + 3);
+      return setNext(next + showMoreCardsWidth1280);
     }
     if (width >= 320) {
-      return setNext(next + 2);
+      return setNext(next + showMoreCardsWidth320);
     }
   }
 

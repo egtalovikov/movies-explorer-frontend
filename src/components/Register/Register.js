@@ -5,7 +5,7 @@ import logo from "../../images/logo.svg";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import validator from "validator";
 
-function Register({ onRegister }) {
+function Register({ onRegister, registerErrorMessage }) {
   const { values, handleChange, errors, isValid } = useFormWithValidation({});
 
   const [emailError, setEmailError] = useState("");
@@ -83,6 +83,7 @@ function Register({ onRegister }) {
             />
             <span className="register__error">{errors.password}</span>
           </div>
+          <span className="register__server-error">{registerErrorMessage}</span>
           <button
             type="submit"
             className={`register__button ${
