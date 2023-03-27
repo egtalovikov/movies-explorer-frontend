@@ -12,8 +12,9 @@ function MoviesCard({ card, setCards, onCardLike, onCardDelete }) {
     )
   );
 
-  const cardLikeButtonClassName = `movies-card__button ${isLiked ? "movies-card__button_active" : ""
-    } buttons`;
+  const cardLikeButtonClassName = `movies-card__button ${
+    isLiked ? "movies-card__button_active" : ""
+  } buttons`;
 
   function getTimeFromMins(mins) {
     let hours = Math.trunc(mins / 60);

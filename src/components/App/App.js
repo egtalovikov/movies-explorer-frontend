@@ -46,7 +46,6 @@ function App() {
 
   const [registerErrorMessage, setRegisterErrorMessage] = useState(" ");
 
-
   useEffect(() => {
     handleTokenCheck();
   }, []);
@@ -84,10 +83,12 @@ function App() {
         }
       })
       .catch((err) => {
-        if (err === 'Ошибка: 409') {
+        if (err === "Ошибка: 409") {
           setRegisterErrorMessage("Пользователь с таким email уже существует.");
         } else {
-          setRegisterErrorMessage("При регистрации пользователя произошла ошибка.");
+          setRegisterErrorMessage(
+            "При регистрации пользователя произошла ошибка."
+          );
         }
         console.log(err);
       });
@@ -108,7 +109,7 @@ function App() {
         setLoginErrorMessage(" ");
       })
       .catch((err) => {
-        if (err === 'Ошибка: 401') {
+        if (err === "Ошибка: 401") {
           setLoginErrorMessage("Вы ввели неправильный логин или пароль.");
         }
         console.log(err);
@@ -167,8 +168,8 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       {location.pathname === "/signup" ||
-        location.pathname === "/signin" ||
-        location.pathname === "/not-found" ? (
+      location.pathname === "/signin" ||
+      location.pathname === "/not-found" ? (
         ""
       ) : (
         <Header loggedIn={loggedIn} />
@@ -176,11 +177,17 @@ function App() {
       <main className="content">
         <Switch>
           <Route path="/signup">
-            <Register onRegister={handleRegister} registerErrorMessage={registerErrorMessage} />
+            <Register
+              onRegister={handleRegister}
+              registerErrorMessage={registerErrorMessage}
+            />
             {loggedIn ? <Redirect to="/" /> : <Redirect to="/signup" />}
           </Route>
           <Route path="/signin">
-            <Login onLogin={handleLogin} loginErrorMessage={loginErrorMessage} />
+            <Login
+              onLogin={handleLogin}
+              loginErrorMessage={loginErrorMessage}
+            />
             {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
           </Route>
           <ProtectedRoute
@@ -239,9 +246,9 @@ function App() {
         </Switch>
       </main>
       {location.pathname === "/signup" ||
-        location.pathname === "/signin" ||
-        location.pathname === "/profile" ||
-        location.pathname === "/not-found" ? (
+      location.pathname === "/signin" ||
+      location.pathname === "/profile" ||
+      location.pathname === "/not-found" ? (
         ""
       ) : (
         <Footer />

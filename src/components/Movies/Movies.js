@@ -53,11 +53,10 @@ function Movies({
               setCards,
               setPostLoadElement
             );
-          }
-          )
+          })
           .catch((err) => console.log(err))
           .finally(() => setIsLoading(false));
-          return;
+        return;
       }
       utilityFunctions.filterCards(
         JSON.parse(localStorage.getItem("initial-movies")),

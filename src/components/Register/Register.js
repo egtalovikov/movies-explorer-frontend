@@ -28,7 +28,7 @@ function Register({ onRegister, registerErrorMessage }) {
   return (
     <section className="register">
       <div className="register__container">
-      <Link to='/'>
+        <Link to="/">
           <img
             src={logo}
             alt="Логотип дипломного проекта"

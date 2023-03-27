@@ -42,10 +42,9 @@ function SavedMovies({
     mainApi
       .getInitialCards()
       .then((values) => {
-        localStorage.setItem("initial-saved-movies", JSON.stringify(values))
+        localStorage.setItem("initial-saved-movies", JSON.stringify(values));
         setCards(values);
-      }
-      )
+      })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }, []);

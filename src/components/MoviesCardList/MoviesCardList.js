@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import "./MoviesCardList.css";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
-import { showMoreCardsWidth1280, showMoreCardsWidth320 } from "../../utils/constants";
+import {
+  showMoreCardsWidth1280,
+  showMoreCardsWidth320,
+} from "../../utils/constants";
 
 function MoviesCardList({
   cards,

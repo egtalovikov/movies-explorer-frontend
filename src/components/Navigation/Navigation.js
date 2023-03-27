@@ -81,12 +81,23 @@ function Navigation() {
         ></span>
       </div>
       <nav className="header__navigation-nav-movies">
-        <Link to="/movies" className={`header__navigation-moviesLink ${location.pathname === '/movies' ? "header__navigation-moviesLink_active" : ""} links`}>
+        <Link
+          to="/movies"
+          className={`header__navigation-moviesLink ${
+            location.pathname === "/movies"
+              ? "header__navigation-moviesLink_active"
+              : ""
+          } links`}
+        >
           Фильмы
         </Link>
         <Link
           to="/saved-movies"
-          className={`header__navigation-savedMoviesLink ${location.pathname === '/saved-movies' ? "header__navigation-savedMoviesLink_active" : ""} links`}
+          className={`header__navigation-savedMoviesLink ${
+            location.pathname === "/saved-movies"
+              ? "header__navigation-savedMoviesLink_active"
+              : ""
+          } links`}
         >
           Сохранённые фильмы
         </Link>

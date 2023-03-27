@@ -32,7 +32,7 @@ function Login({ onLogin, loginErrorMessage }) {
   return (
     <section className="login">
       <div className="login__container">
-        <Link to='/'>
+        <Link to="/">
           <img
             src={logo}
             alt="Логотип дипломного проекта"
@@ -78,10 +78,11 @@ function Login({ onLogin, loginErrorMessage }) {
           <button
             onSubmit={handleSubmit}
             type="submit"
-            className={`login__button ${isValid && validator.isEmail(values.email)
+            className={`login__button ${
+              isValid && validator.isEmail(values.email)
                 ? ""
                 : "login__button_inactive"
-              } buttons`}
+            } buttons`}
             disabled={isValid && validator.isEmail(values.email) ? "" : "true"}
           >
             Войти
