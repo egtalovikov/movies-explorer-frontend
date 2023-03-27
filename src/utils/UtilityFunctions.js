@@ -8,18 +8,30 @@ export function filterCards(
   setCards,
   setPostLoadElement
 ) {
-  const filteredMovies = cards.filter((item) => {
-    if (checkboxState) {
-      return (
-        item.nameRU.toLowerCase().indexOf(searchInput.toLowerCase()) !== -1 &&
-        item.duration <= shortsDuration
-      );
-    } else {
-      return (
-        item.nameRU.toLowerCase().indexOf(searchInput.toLowerCase()) !== -1
-      );
-    }
-  });
+  const filteredMovies =
+    cards !== null
+      ? cards.filter((item) => {
+          if (searchInput !== null) {
+            if (checkboxState) {
+              return (
+                item.nameRU.toLowerCase().indexOf(searchInput.toLowerCase()) !==
+                  -1 && item.duration <= shortsDuration
+              );
+            } else {
+              return (
+                item.nameRU.toLowerCase().indexOf(searchInput.toLowerCase()) !==
+                -1
+              );
+            }
+          } else {
+            if (checkboxState) {
+              return item.duration <= shortsDuration;
+            } else {
+              return item;
+            }
+          }
+        })
+      : [];
 
   localStorage.setItem(
     `search-input-${isSaved ? "saved-" : ""}movies`,
