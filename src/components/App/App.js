@@ -1,45 +1,243 @@
-import { useState } from 'react';
-import { Switch, Route, useLocation, Redirect } from 'react-router-dom';
-import './App.css';
-import Main from '../Main/Main';
-import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
-import Profile from '../Profile/Profile';
-import Login from '../Login/Login';
-import Register from '../Register/Register';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import NotFound from '../NotFound/NotFound';
+import { useState, useEffect } from "react";
+import {
+  Switch,
+  Route,
+  useLocation,
+  Redirect,
+  useHistory,
+} from "react-router-dom";
+import "./App.css";
+import Main from "../Main/Main";
+import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
+import Profile from "../Profile/Profile";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import NotFound from "../NotFound/NotFound";
+import mainApi from "../../utils/MainApi";
+import * as auth from "../../utils/Auth";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
   let location = useLocation();
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const history = useHistory();
+
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("jwt"));
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [postLoadElement, setPostLoadElement] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [name, setName] = useState("");
+
+  const [email, setEmail] = useState("");
+
+  const [currentUser, setCurrentUser] = useState({});
+
+  const [updateErrorMessage, setUpdateErrorMessage] = useState("");
+
+  const [loginErrorMessage, setLoginErrorMessage] = useState(" ");
+
+  const [registerErrorMessage, setRegisterErrorMessage] = useState(" ");
+
+  useEffect(() => {
+    handleTokenCheck();
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      mainApi
+        .loadUserInfo()
+        .then((res) => {
+          setCurrentUser(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [loggedIn]);
+
+  function handleRegister(name, email, password) {
+    auth
+      .register(name, email, password)
+      .then((res) => {
+        if (res.status !== 400) {
+          setErrorMessage("");
+          auth.authorize(email, password).then((data) => {
+            if (data.token) {
+              setErrorMessage("");
+              setName(data.name);
+              setEmail(email);
+              setLoggedIn(true);
+              history.push("/movies");
+            }
+          });
+          history.push("/movies");
+          setRegisterErrorMessage(" ");
+        }
+      })
+      .catch((err) => {
+        if (err === "Ошибка: 409") {
+          setRegisterErrorMessage("Пользователь с таким email уже существует.");
+        } else {
+          setRegisterErrorMessage(
+            "При регистрации пользователя произошла ошибка."
+          );
+        }
+        console.log(err);
+      });
+  }
+
+  function handleLogin(email, password, resetForm) {
+    auth
+      .authorize(email, password)
+      .then((data) => {
+        if (data.token) {
+          setErrorMessage("");
+          setName(data.name);
+          setEmail(email);
+          resetForm();
+          setLoggedIn(true);
+          history.push("/movies");
+        }
+        setLoginErrorMessage(" ");
+      })
+      .catch((err) => {
+        if (err === "Ошибка: 401") {
+          setLoginErrorMessage("Вы ввели неправильный логин или пароль.");
+        }
+        console.log(err);
+      });
+  }
+
+  function handleUpdateUser(user, setUpdateErrorMessage) {
+    mainApi
+      .editProfile(user)
+      .then((res) => {
+        setCurrentUser(res);
+        setUpdateErrorMessage("Успешно");
+      })
+      .catch((err) => {
+        if (err === "Ошибка: 409") {
+          setUpdateErrorMessage("Пользователь с таким email уже существует.");
+        } else {
+          setUpdateErrorMessage("При обновлении профиля произошла ошибка.");
+        }
+        console.log(err);
+      });
+  }
+
+  function handleTokenCheck() {
+    const jwt = localStorage.getItem("jwt");
+
+    if (jwt) {
+      auth.checkToken(jwt).then((res) => {
+        if (res) {
+          setName(res.name);
+          setEmail(res.email);
+        }
+      });
+    }
+  }
+
+  function handleCardLike(card) {
+    mainApi.addMovie(card).catch((err) => {
+      console.log(err);
+    });
+  }
+
+  function handleCardDelete(card, setCards, isSaved) {
+    mainApi
+      .deleteMovie(card._id)
+      .then(() => {
+        if (isSaved) {
+          setCards((state) => state.filter((c) => c !== card));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
-    <>
-     {location.pathname === "/signup" || location.pathname === "/signin" || location.pathname === "/not-found" ? "" :  <Header loggedIn={loggedIn} />}
-      <main className='content'>
+    <CurrentUserContext.Provider value={currentUser}>
+      {location.pathname === "/signup" ||
+      location.pathname === "/signin" ||
+      location.pathname === "/not-found" ? (
+        ""
+      ) : (
+        <Header loggedIn={loggedIn} />
+      )}
+      <main className="content">
         <Switch>
-          <Route path='/signup'>
-            <Register />
+          <Route path="/signup">
+            <Register
+              onRegister={handleRegister}
+              registerErrorMessage={registerErrorMessage}
+            />
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/signup" />}
           </Route>
-          <Route path='/signin'>
-            <Login />
+          <Route path="/signin">
+            <Login
+              onLogin={handleLogin}
+              loginErrorMessage={loginErrorMessage}
+            />
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
           </Route>
-          <Route path='/movies'>
-            <Movies />
-          </Route>
-          <Route path='/saved-movies'>
-            <SavedMovies />
-          </Route>
-          <Route path='/profile'>
-            <Profile />
-          </Route>
-          <Route path='/not-found'>
+          <ProtectedRoute
+            path="/movies"
+            component={Movies}
+            setIsLoading={setIsLoading}
+            setPostLoadElement={setPostLoadElement}
+            onLoading={isLoading}
+            postLoadElement={postLoadElement}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+            loggedIn={loggedIn}
+          >
+            {loggedIn ? <Redirect to="/movies" /> : <Redirect to="/sign-up" />}
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/saved-movies"
+            component={SavedMovies}
+            setPostLoadElement={setPostLoadElement}
+            setIsLoading={setIsLoading}
+            onLoading={isLoading}
+            postLoadElement={postLoadElement}
+            onCardDelete={handleCardDelete}
+            loggedIn={loggedIn}
+          >
+            {loggedIn ? (
+              <Redirect to="/saved-movies" />
+            ) : (
+              <Redirect to="/sign-up" />
+            )}
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/profile"
+            component={Profile}
+            name={name}
+            email={email}
+            setLoggedIn={setLoggedIn}
+            setCurrentUser={setCurrentUser}
+            history={history}
+            onUpdateUser={handleUpdateUser}
+            errorMessage={updateErrorMessage}
+            setUpdateErrorMessage={setUpdateErrorMessage}
+            loggedIn={loggedIn}
+          >
+            {loggedIn ? <Redirect to="/profile" /> : <Redirect to="/sign-up" />}
+          </ProtectedRoute>
+          <Route path="/not-found">
             <NotFound />
           </Route>
-          <Route exact path='/'>
+          <Route exact path="/">
             <Main />
           </Route>
           <Route path="*">
@@ -47,8 +245,15 @@ function App() {
           </Route>
         </Switch>
       </main>
-      {location.pathname === "/signup" || location.pathname === "/signin" || location.pathname === "/profile" || location.pathname === "/not-found" ? "" :  <Footer />}
-    </>
+      {location.pathname === "/signup" ||
+      location.pathname === "/signin" ||
+      location.pathname === "/profile" ||
+      location.pathname === "/not-found" ? (
+        ""
+      ) : (
+        <Footer />
+      )}
+    </CurrentUserContext.Provider>
   );
 }
 

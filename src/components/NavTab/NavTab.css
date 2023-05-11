@@ -1,38 +1,38 @@
 .navTab {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 17px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 17px;
 }
 
 .navTab__button {
-    height: 26px;
-    width: 82px;
-    border: none;
-    font-weight: 500;
-    font-size: 10px;
-    line-height: 16px;
-    background-color: #E8E8E8;
-    border-radius: 6px;
-    color: #FFFFFF;
+  height: 26px;
+  width: 82px;
+  border: none;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+  background-color: #e8e8e8;
+  border-radius: 6px;
+  color: #ffffff;
 }
 
 .navTab__button:not(:last-of-type) {
-    margin-right: 6px;
+  margin-right: 6px;
 }
 
 @media screen and (min-width: 768px) {
-    .navTab {
-        margin-bottom: 30px;
-    }
-    
-    .navTab__button {
-        height: 36px;
-        width: 96px;
-        font-size: 12px;
-        border-radius: 10px;
-    }
+  .navTab {
+    margin-bottom: 30px;
+  }
 
-    .navTab__button:not(:last-of-type) {
-        margin-right: 10px;
-    }
+  .navTab__button {
+    height: 36px;
+    width: 96px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+
+  .navTab__button:not(:last-of-type) {
+    margin-right: 10px;
+  }
 }
